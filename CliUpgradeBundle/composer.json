@@ -1,0 +1,14 @@
+{
+    "name": "prestashop/cli-upgrade-bundle",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">=8.1",
+        "symfony/framework-bundle": "6.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrestaShop\\CliUpgradeBundle\\": "src/"
+        }
+    },
+    "license": "MIT"
+}

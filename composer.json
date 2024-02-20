@@ -1,0 +1,87 @@
+{
+    "name": "prestashop/cli-upgrade-assistant",
+    "description": "This is the PrestaShop Upgrade Assistant CLI tool, that is used to simply upgrade PrestaShop from one version to another.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PrestaShop SA",
+            "email": "contact@prestashop.com"
+        },
+        {
+            "name": "PrestaShop Community",
+            "homepage": "https://contributors.prestashop-project.org/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.1",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "symfony/console": "6.4.*",
+        "symfony/dotenv": "6.4.*",
+        "symfony/flex": "^1.17|^2",
+        "symfony/framework-bundle": "6.4.*",
+        "symfony/runtime": "6.4.*",
+        "symfony/yaml": "6.4.*",
+        "prestashop/cli-upgrade-bundle": "dev-main",
+        "prestashop/core-upgrade-bundle": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "php bin/console > /dev/null"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.4.*"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4",
+        "phpstan/phpstan": "^1.10"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "CliUpgradeBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/PrestaShop/CoreUpgradeBundle"
+        }
+    ]
+}
