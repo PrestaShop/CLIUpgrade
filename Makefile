@@ -10,8 +10,8 @@ install-box:
 # Prepare the build and install all dependencies
 prepare-build:
 	# Remove the var directory and install the dependencies
-	rm -rf build/ var/
-	composer install --no-interaction
+	rm -rf build/ var/ vendor/
+	COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-interaction
 	# Dump the environment variables
 	composer dump-env prod
 	@echo "--> Build preparation complete!"

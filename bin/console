@@ -28,6 +28,8 @@
 use App\Application;
 use App\Kernel;
 
+$_SERVER['APP_SCRIPT_FILENAME'] = __FILE__;
+
 if (!is_file(dirname(__DIR__).'/vendor/autoload_runtime.php')) {
     throw new LogicException('Symfony Runtime is missing. Try running "composer require symfony/runtime".');
 }

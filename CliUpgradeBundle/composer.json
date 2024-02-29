@@ -9,6 +9,5 @@
         "psr-4": {
             "PrestaShop\\CliUpgradeBundle\\": "src/"
         }
-    },
-    "license": "MIT"
+    }
 }

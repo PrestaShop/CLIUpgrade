@@ -44,7 +44,7 @@ class VersionCommand extends Command
     protected static $defaultDescription = 'Display the current version of this PrestaShop Upgrade Assistant';
 
     public function __construct(
-        private CliRepositoryExtractor $cliRepositoryExtractor
+        private readonly CliRepositoryExtractor $cliRepositoryExtractor
     ) {
         parent::__construct(self::$defaultName);
     }

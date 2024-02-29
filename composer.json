@@ -21,7 +21,7 @@
         "ext-iconv": "*",
         "symfony/console": "6.4.*",
         "symfony/dotenv": "6.4.*",
-        "symfony/flex": "^1.17|^2",
+        "symfony/flex": "^2",
         "symfony/framework-bundle": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/yaml": "6.4.*",
@@ -41,6 +41,7 @@
         },
         "sort-packages": true
     },
+    "bin": "bin/console",
     "scripts": {
         "post-autoload-dump": [
             "php bin/console > /dev/null"
@@ -59,7 +60,11 @@
     "replace": {
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*"
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -67,7 +72,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.4.*"
+            "require": "6.4.*"
         }
     },
     "require-dev": {
@@ -77,11 +82,11 @@
     "repositories": [
         {
             "type": "path",
-            "url": "CliUpgradeBundle"
+            "url": "./CliUpgradeBundle"
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/PrestaShop/CoreUpgradeBundle"
+            "type": "path",
+            "url": "../ps-upgrade-assistant-core"
         }
     ]
 }
