@@ -42,10 +42,12 @@ class Application extends BaseApplication
     /** @var string */
     protected $defaultCommand = 'list';
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel, ?string $forceVersion = null)
     {
         parent::__construct($kernel);
-        ConsoleApplication::__construct('PrestaShop Upgrade Assistant', self::VERSION);
+        $cliAppVersion = $forceVersion ?? self::VERSION;
+        $this->setVersion($cliAppVersion);
+        ConsoleApplication::__construct('PrestaShop Upgrade Assistant', $cliAppVersion);
     }
 
     /**

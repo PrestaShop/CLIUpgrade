@@ -29,4 +29,8 @@ cs-fixer:
 phpstan:
 	php vendor/bin/phpstan analyse
 
-.PHONY: install-box prepare-build build cs-fixer phpstan
+# Run the tests
+tests:
+	php vendor/bin/phpunit
+
+.PHONY: install-box prepare-build build cs-fixer phpstan tests

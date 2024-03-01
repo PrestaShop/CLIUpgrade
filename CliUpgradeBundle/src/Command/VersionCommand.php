@@ -29,6 +29,7 @@ namespace PrestaShop\CliUpgradeBundle\Command;
 use App\Application;
 use PrestaShop\CoreUpgradeBundle\CoreUpgradeBundle;
 use PrestaShop\CoreUpgradeBundle\Extractor\Github\CliRepositoryExtractor;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,31 +39,30 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * Display the current version of this PrestaShop Upgrade Assistant Core and Cli App.
  * It also checks if the current version is the latest one.
  */
+#[AsCommand('version', description: 'Display the current version of this PrestaShop Upgrade Assistant')]
 class VersionCommand extends Command
 {
-    protected static $defaultName = 'version';
-    protected static $defaultDescription = 'Display the current version of this PrestaShop Upgrade Assistant';
-
     public function __construct(
+        private readonly Application $application,
         private readonly CliRepositoryExtractor $cliRepositoryExtractor
     ) {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
         $table = $io->createTable();
         $table->setStyle('compact');
         $table->setRows([
-            ['CLI App', "<info>" . Application::VERSION . "</info>"],
+            ['CLI App', "<info>" . $this->application->getVersion() . "</info>"],
             ['Core Upgrade', "<info>" . CoreUpgradeBundle::VERSION . "</info>"],
         ]);
         $table->render();
 
         $lastVersionAvailable = $this->cliRepositoryExtractor->getLastVersion();
-        if ($lastVersionAvailable !== null && version_compare(Application::VERSION, $lastVersionAvailable, '<')) {
+        if ($lastVersionAvailable !== null && version_compare($this->application->getVersion(), $lastVersionAvailable, '<')) {
             $io->warning(sprintf('You are not using the latest version (%s)!', $lastVersionAvailable));
         }
 
