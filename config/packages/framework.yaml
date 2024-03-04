@@ -1,0 +1,5 @@
+framework:
+    http_method_override: false
+    handle_all_throwables: false
+    php_errors:
+        log: true
